@@ -63,25 +63,6 @@
                 </configuration>
             </plugin>
 
-            <!-- Site Plugin with Reports -->
-            <plugin>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.12.1</version>
-            </plugin>
-
-            <!-- Reporting Plugins -->
-            <reporting>
-                <plugins>
-                    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId></plugin>
-                    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-jxr-plugin</artifactId></plugin>
-                    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId></plugin>
-                    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-pmd-plugin</artifactId></plugin>
-                    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-report-plugin</artifactId></plugin>
-                    <plugin><groupId>org.codehaus.mojo</groupId><artifactId>findbugs-maven-plugin</artifactId></plugin>
-                    <plugin><groupId>org.codehaus.mojo</groupId><artifactId>taglist-maven-plugin</artifactId></plugin>
-                </plugins>
-            </reporting>
-
             <!-- SonarQube Plugin -->
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
@@ -91,6 +72,40 @@
 
         </plugins>
     </build>
+
+    <!-- Reporting Plugins should be directly under project -->
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>taglist-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </reporting>
 
     <dependencyManagement>
         <dependencies>
@@ -143,4 +158,3 @@
     </prerequisites>
 
 </project>
-
