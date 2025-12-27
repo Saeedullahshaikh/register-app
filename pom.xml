@@ -1,17 +1,19 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/maven-v4_0_0.xsd">
 
-    <modelVersion>4.0.0</modelVersion> 
+    <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example.maven-project</groupId>
     <artifactId>maven-project</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>Maven Project</name>
-    <description>Sample Maven project with a working, deployable site.</description>
-    <url>http://www.example.com</url>
 
+    <name>Maven Project</name>
+    <description>Sample Maven project</description>
+
+    <!-- ================= PROPERTIES ================= -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -19,32 +21,32 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
+    <!-- ================= MODULES ================= -->
     <modules>
         <module>server</module>
         <module>webapp</module>
     </modules>
 
-    <distributionManagement>
-        <site>
-            <id>site-server</id>
-            <name>Test Project Site</name>
-            <url>file:///tmp/maven-project-site</url>
-        </site>
-    </distributionManagement>
+    <!-- ================= SONAR REPOSITORY (OPTION-2) ================= -->
+    <repositories>
+        <repository>
+            <id>sonarsource</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
 
+    <!-- ================= BUILD ================= -->
     <build>
         <plugins>
-            <!-- Compiler Plugin -->
+
+            <!-- Compiler -->
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                </configuration>
             </plugin>
 
-            <!-- WAR Plugin -->
+            <!-- WAR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -54,26 +56,17 @@
                 </configuration>
             </plugin>
 
-            <!-- Release Plugin -->
-            <plugin>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>3.0.0-M1</version>
-                <configuration>
-                    <autoVersionSubmodules>true</autoVersionSubmodules>
-                </configuration>
-            </plugin>
-
-            <!-- SonarQube Plugin -->
+            <!-- ✅ SONAR MAVEN PLUGIN (OPTION-1 STABLE VERSION) -->
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.10.0.2614</version>
+                <version>3.9.1.2184</version>
             </plugin>
 
         </plugins>
     </build>
 
-    <!-- Reporting Plugins should be directly under project -->
+    <!-- ================= REPORTING (FIXED LOCATION) ================= -->
     <reporting>
         <plugins>
             <plugin>
@@ -82,79 +75,13 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
+                <artifactId>maven-pmd-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>taglist-maven-plugin</artifactId>
-            </plugin>
         </plugins>
     </reporting>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>servlet-api</artifactId>
-                <version>2.5</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.servlet.jsp</groupId>
-                <artifactId>jsp-api</artifactId>
-                <version>2.2</version>
-            </dependency>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit-dep</artifactId>
-                <version>4.10</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-core</artifactId>
-                <version>1.2.1</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-library</artifactId>
-                <version>1.2.1</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>1.8.5</version>
-                <scope>test</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <scm>
-        <connection>scm:git:git@github.com:jleetutorial/maven-project.git</connection>
-        <developerConnection>scm:git:git@github.com:jleetutorial/maven-project.git</developerConnection>
-        <tag>HEAD</tag>
-        <url>http://github.com/jleetutorial/maven-project</url>
-    </scm>
-
-    <prerequisites>
-        <maven>3.0.3</maven>
-    </prerequisites>
 
 </project>
