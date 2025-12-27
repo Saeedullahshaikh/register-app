@@ -67,30 +67,26 @@
             <plugin>
                 <artifactId>maven-site-plugin</artifactId>
                 <version>3.12.1</version>
-                <configuration>
-                    <reportPlugins>
-                        <plugin><artifactId>maven-checkstyle-plugin</artifactId></plugin>
-                        <plugin><artifactId>maven-jxr-plugin</artifactId></plugin>
-                        <plugin><artifactId>maven-javadoc-plugin</artifactId></plugin>
-                        <plugin><artifactId>maven-pmd-plugin</artifactId></plugin>
-                        <plugin><artifactId>maven-surefire-report-plugin</artifactId></plugin>
-                        <plugin>
-                            <groupId>org.codehaus.mojo</groupId>
-                            <artifactId>findbugs-maven-plugin</artifactId>
-                        </plugin>
-                        <plugin>
-                            <groupId>org.codehaus.mojo</groupId>
-                            <artifactId>taglist-maven-plugin</artifactId>
-                        </plugin>
-                    </reportPlugins>
-                </configuration>
             </plugin>
+
+            <!-- Reporting Plugins -->
+            <reporting>
+                <plugins>
+                    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId></plugin>
+                    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-jxr-plugin</artifactId></plugin>
+                    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId></plugin>
+                    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-pmd-plugin</artifactId></plugin>
+                    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-report-plugin</artifactId></plugin>
+                    <plugin><groupId>org.codehaus.mojo</groupId><artifactId>findbugs-maven-plugin</artifactId></plugin>
+                    <plugin><groupId>org.codehaus.mojo</groupId><artifactId>taglist-maven-plugin</artifactId></plugin>
+                </plugins>
+            </reporting>
 
             <!-- SonarQube Plugin -->
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.11.1.2184</version>
+                <version>3.10.0.2614</version>
             </plugin>
 
         </plugins>
